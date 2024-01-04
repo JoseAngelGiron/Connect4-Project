@@ -9,7 +9,7 @@ public class TestGame {
 
         Board board = new Board();
         board.initializeBoard();
-        board.imprimeArrayEnteros();
+        System.out.println(board.toString());
 
 
     }

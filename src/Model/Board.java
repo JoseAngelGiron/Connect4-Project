@@ -4,8 +4,15 @@ import java.util.Arrays;
 
 public class Board {
 
-    private char[][] board = new char[4][6];
+    private char[][] board;
 
+
+    public Board(){
+        this(4,6);
+    }
+    public Board(int column, int row){
+        this.board = new char[column][row];
+    }
 
 
     public char[][] getBoard() {
@@ -18,22 +25,25 @@ public class Board {
 
 
     public void initializeBoard(){
-        System.out.print("\u001B[34m");
+        new Board();
         for (int i =0;i<board.length;i++) {
             for (int j=0;j<board[i].length;j++){
-                board[i][j] = 'O';
+                board[i][j] = ' ';
             }
 
         }
 
     }
 
-    public  void imprimeArrayEnteros(){
+    public void imprimeArrayEnteros(){
 
         for (int i=0;i< board.length;i++) {
+
             System.out.println();
+
             for (int j=0;j< board[i].length;j++){
-                System.out.print(board[i][j]+" ");
+
+                System.out.print("| "+board[i][j]+" |");
 
             }
 
@@ -42,14 +52,19 @@ public class Board {
 
     @Override
     public String toString() {
-
+        String board1 = "";
         for (int i =0;i< this.board.length;i++) {
+            board1 += "|";
             for (int j=0;j<this.board[i].length;j++) {
-                System.out.print(board[i][j]);
+                if(j!=board[i].length-1)
+                    board1 += " "+board[i][j]+" |";
+                else{
+                    board1 += " "+board[i][j]+" ";
+                }
             }
-            System.out.println();
+            board1 += "| \n";
         }
 
-        return null;
+        return board1;
     }
 }

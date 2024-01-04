@@ -8,8 +8,17 @@ public class Player {
 
     private int wins;
 
+    public Player(){
+        this("",' ', 0);
 
+    }
 
+    public Player(String name, char token, int wins){
+        this.name = name;
+        this.token = token;
+        this.wins = wins;
+
+    }
 
     public String getName() {
         return name;
