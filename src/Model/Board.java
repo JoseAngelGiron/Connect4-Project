@@ -26,45 +26,34 @@ public class Board {
 
     public void initializeBoard(){
         new Board();
-        for (int i =0;i<board.length;i++) {
-            for (int j=0;j<board[i].length;j++){
-                board[i][j] = ' ';
-            }
+        for (char[] chars : board) {
+            Arrays.fill(chars, ' ');
 
         }
 
     }
 
-    public void imprimeArrayEnteros(){
 
-        for (int i=0;i< board.length;i++) {
-
-            System.out.println();
-
-            for (int j=0;j< board[i].length;j++){
-
-                System.out.print("| "+board[i][j]+" |");
-
-            }
-
-        }
-    }
 
     @Override
     public String toString() {
-        String board1 = "";
+        String board = "";
         for (int i =0;i< this.board.length;i++) {
-            board1 += "|";
+            board += "|";
             for (int j=0;j<this.board[i].length;j++) {
-                if(j!=board[i].length-1)
-                    board1 += " "+board[i][j]+" |";
+
+                if(j!=this.board[i].length-1)
+                    board += " "+this.board[i][j]+" |";
                 else{
-                    board1 += " "+board[i][j]+" ";
+                    board += " "+this.board[i][j]+" ";
                 }
+
+
             }
-            board1 += "| \n";
+            board += "| \n";
+
         }
 
-        return board1;
+        return board;
     }
 }

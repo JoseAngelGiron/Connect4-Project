@@ -20,6 +20,8 @@ public class Player {
 
     }
 
+
+
     public String getName() {
         return name;
     }
@@ -43,6 +45,7 @@ public class Player {
     public void setWins(int wins) {
         this.wins = wins;
     }
+
 
 
     @Override

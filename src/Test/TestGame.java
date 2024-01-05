@@ -9,7 +9,7 @@ public class TestGame {
 
         Board board = new Board();
         board.initializeBoard();
-        System.out.println(board.toString());
+        System.out.println(board);
 
 
     }
