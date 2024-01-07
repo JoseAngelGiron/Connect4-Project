@@ -62,6 +62,21 @@ public class Menu {
         }
 
     }
+
+    public static int selectColumn(){
+
+        return IO.readInt("Inserte el número de columna que desea");
+    }
+
+    public static void showPlayerTurn(boolean playerTurn){
+
+        if(playerTurn){
+            System.out.println("Es el turno del jugador 1");
+        }else{
+            System.out.println("Es el turno del jugador 2");
+        }
+
+    }
 }
 
 

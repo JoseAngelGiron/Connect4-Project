@@ -12,6 +12,8 @@ public class TestGame {
         System.out.println(board);
 
 
+
+        System.out.println(board);
     }
 
 

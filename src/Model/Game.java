@@ -41,9 +41,6 @@ public class Game {
      */
     public void addPlayers() {
 
-
-        Player[] players = new Player[2];
-        setPlayers(players);
         for (int i = 0; i < players.length; i++) {
                 if(i==0) {
                     players[i] = new Player("", 'O', 0);
@@ -68,6 +65,12 @@ public class Game {
         }
     }
 
+    /**
+     * Esta función comprueba los nombres de los jugadores y devuelve true si el nombre es válido porque no está asignado, o, por el contrario,
+     * devuelve false porque el nombre ya está en uso
+     * @param name el nombre de jugador que se va a comprobar
+     * @return nameValid, que será true o false
+     */
     public boolean validateName(String name){
         boolean nameValid = true;
         for (int i=0;i< players.length ;i++) {
@@ -76,6 +79,18 @@ public class Game {
             }
         }
         return nameValid;
+    }
+
+
+    public Player choosePlayer(boolean playerTurn){
+        Player player = players[1];
+
+        if (playerTurn){
+            player = players[0];
+        }
+
+
+        return player;
     }
 
 
