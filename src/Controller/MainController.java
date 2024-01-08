@@ -27,35 +27,23 @@ public class MainController {
             switch (option) {
 
                 case 1:
-
                     inialitizeGame(game);
                     Menu.showBoard(game.getBoard().getBoard());
                     boolean playerTurn= false;
 
                     while( game.getBoard().determineWinner(playerTurn, game) ||  !game.getBoard().checkIfBoardNotComplete()){
-
                         playerTurn= !playerTurn;
-                        insertToken(game, playerTurn);
+                        chooseWhatToDo(game, playerTurn);
+
                         Menu.showBoard(game.getBoard().getBoard());
-
                     }
-
-                    if(!game.getBoard().checkIfBoardNotComplete()){
-                        System.out.println("Ha habido un empate");
-                    } else if (playerTurn) {
-                        System.out.println("El ganador es el jugador 1: "+game.getPlayers()[0].getName());
-
-                    }else{
-                        System.out.println("El ganador es el jugador 2: "+game.getPlayers()[0].getName());
-                    }
-
-
+                    Menu.showWinner(!game.getBoard().checkIfBoardNotComplete(), playerTurn, game.getPlayers()[0].getName(), game.getPlayers()[1].getName());
                     break;
                 case 2:
                     Menu.rules();
                     break;
                 case 3:
-                    System.out.println("Ha elegido salir del programa. (Poner un mensaje mas elegante y en la vista)");
+                    Menu.showGoodBye();
                     break;
 
             }
@@ -89,7 +77,7 @@ public class MainController {
 
     public static void insertToken(Game game, boolean playerTurn){
         boolean columnHasSpace;
-        Menu.showPlayerTurn(playerTurn);
+
 
         do {
 
@@ -105,8 +93,27 @@ public class MainController {
 
         }while(!columnHasSpace);
 
+    }
 
+    public static void chooseWhatToDo(Game game, boolean playerTurn){
+        boolean tokenNotInserted= true;
+        do{
+            Menu.showPlayerTurn(playerTurn, game.getPlayers()[0].getName(), game.getPlayers()[1].getName());
+            int option = Menu.selectOption();
+            switch (option){
+                case 1:
 
+                    insertToken(game, playerTurn);
+                    tokenNotInserted=false;
+
+                    break;
+                case 2:
+
+                    break;
+
+            }
+
+        }while(tokenNotInserted);
 
     }
 }

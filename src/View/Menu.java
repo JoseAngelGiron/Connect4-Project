@@ -45,6 +45,9 @@ public class Menu {
     }
 
     public static void showBoard(char[][] matriz){
+
+        System.out.println("Este es el estado del tablero: \n");
+
         for (int i =0;i< matriz.length;i++) {
             System.out.print("|");
             for (int j=0;j<matriz[i].length;j++) {
@@ -65,18 +68,53 @@ public class Menu {
 
     public static int selectColumn(){
 
-        return IO.readInt("Inserte el número de columna que desea");
+        return IO.readInt2("Inserte el número de columna que desea", 1, 4);
     }
 
-    public static void showPlayerTurn(boolean playerTurn){
+    public static void showPlayerTurn(boolean playerTurn, String name1, String name2){
 
         if(playerTurn){
-            System.out.println("Es el turno del jugador 1");
+            System.out.println("Es el turno del jugador 1: "+name1+"\n");
         }else{
-            System.out.println("Es el turno del jugador 2");
+            System.out.println("Es el turno del jugador 2: "+name2+"\n");
         }
 
     }
+
+    public static void showWinner(boolean tie, boolean playerTurn, String player1, String player2){
+
+        if(tie){
+            System.out.println("Ha habido un empate");
+        } else if (playerTurn) {
+            System.out.println("El ganador es el jugador 1: "+player1);
+
+        }else{
+            System.out.println("El ganador es el jugador 2: "+player2);
+        }
+
+    }
+    public static void showGoodBye(){
+
+        System.out.println("¡Ha elegido salir del programa! ¡Que pases un buen día!");
+    }
+
+    public static int selectOption(){
+        try {
+            Thread.sleep(1000);
+            System.out.println("********** ¿Que desea hacer a continuación? ********** \n");
+            Thread.sleep(1000);
+            System.out.println("1. Insertar ficha");
+            Thread.sleep(320);
+            System.out.println("2. Guardar el estado de la partida \n");
+            Thread.sleep(320);
+
+        }catch (InterruptedException e) {
+
+        }
+        return IO.readInt2("Seleccione que quiere hacer a continuación: ", 1, 2);
+    }
+
+
 }
 
 

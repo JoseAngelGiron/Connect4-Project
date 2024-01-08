@@ -32,7 +32,7 @@ public class IO {
         return name;
     }
 
-    public static int readInt2(String msg){
+    public static int readInt2(String msg, int n1, int n2){
         int option= -1;
         Scanner teclado = new Scanner(System.in);
         System.out.println(msg);
@@ -47,11 +47,11 @@ public class IO {
                 System.out.println("No ha introducido una opción valida, pruebe de nuevo, por favor");
 
             }
-            if (option<1 || option>6){
-                System.out.println("La opción contemplada debe estar entre 1 y 6. Pruebe de nuevo, por favor");
+            if (option<n1 || option>n2){
+                System.out.println("La opción contemplada debe estar entre "+ n1 +" y "+ n2 +". Pruebe de nuevo, por favor");
             }
 
-        }while (option<1 || option>6);
+        }while (option<n1 || option>n2);
 
 
         return option;
