@@ -1,10 +1,13 @@
 package Controller;
 
 import Model.Game;
+import Persistence.Serializator;
 import View.Menu;
 
+import java.util.Arrays;
+
 public class MainController {
-    public static Game game = new Game();
+    public static Game game;
 
     public static void startApp(){
         int option = -1;
@@ -13,11 +16,11 @@ public class MainController {
 
             mainController(option);
 
-            if(option>3 || option<1)
+            if(option>4 || option<1)
                 System.out.println("El número introducido no se corresponde con una opción valida, pruebe de nuevo");
 
 
-        }while (option!=3);
+        }while (option!=4);
 
 
     }
@@ -27,7 +30,12 @@ public class MainController {
             switch (option) {
 
                 case 1:
-                    inialitizeGame(game);
+
+                    if(game==null){
+                        game = new Game();
+                        inialitizeGame(game);
+                    }
+
                     Menu.showBoard(game.getBoard().getBoard());
                     boolean playerTurn= false;
 
@@ -43,6 +51,17 @@ public class MainController {
                     Menu.rules();
                     break;
                 case 3:
+                    Game game1 = Serializator.desearize("gameConnect.bin");
+                    if(game1!=null){
+
+                        System.out.println("Ha cargado la partida correctamente");
+                        game = game1;
+
+                    }else{
+                        System.out.println("No se ha podido cargar");
+                    }
+                    break;
+                case 4:
                     Menu.showGoodBye();
                     break;
 
@@ -97,6 +116,7 @@ public class MainController {
 
     public static void chooseWhatToDo(Game game, boolean playerTurn){
         boolean tokenNotInserted= true;
+
         do{
             Menu.showPlayerTurn(playerTurn, game.getPlayers()[0].getName(), game.getPlayers()[1].getName());
             int option = Menu.selectOption();
@@ -108,7 +128,7 @@ public class MainController {
 
                     break;
                 case 2:
-
+                    Serializator.serialize(game, "gameConnect.bin");
                     break;
 
             }

@@ -14,7 +14,8 @@ public class Menu {
         System.out.println("********** Menú **********");
         System.out.println("1. Iniciar Conecta 4");
         System.out.println("2. Ver las reglas");
-        System.out.println("3. Salir \n");
+        System.out.println("3. Cargar partida");
+        System.out.println("4. Salir \n");
 
 
         return IO.readInt("Elija una opción");
