@@ -9,16 +9,22 @@ public class Game implements Serializable {
 
     private Board board;
 
+    private boolean turn;
+
 
     public Game(){
-        this(new Player[2], new Board());
+        this(new Player[2], new Board(), false);
 
     }
 
-    public Game(Player[] players, Board board) {
+
+    public Game(Player[] players, Board board, boolean turn) {
         this.players = players;
         this.board = board;
+        this.turn = turn;
     }
+
+
 
     public Player[] getPlayers() {
         return players;
@@ -36,6 +42,13 @@ public class Game implements Serializable {
         this.board = board;
     }
 
+    public boolean isTurn() {
+        return turn;
+    }
+
+    public void setTurn(boolean turn) {
+        this.turn = turn;
+    }
 
     /**
      * Esta función se encarga de establecer los jugadores.
@@ -82,16 +95,33 @@ public class Game implements Serializable {
         return nameValid;
     }
 
-
-    public Player choosePlayer(boolean playerTurn){
+    /**
+     * Esta función se encarga de escoger al jugador que le toca, utilizando el atributo "turn"
+     *
+     * @return el jugador del que se trata.
+     */
+    public Player choosePlayer(){
         Player player = players[1];
 
-        if (playerTurn){
+        if (turn){
             player = players[0];
         }
 
 
         return player;
+    }
+
+    /**
+     * Esta función se encarga de sumar una victoria a las victorias totales del jugador en cuestión. Para determinar el
+     * jugador que ha ganado, usa el atributo turn
+     */
+    public void plusVictory() {
+        if(turn){
+            players[0].setWins(players[0].getWins()+1);
+        }else{
+            players[1].setWins(players[1].getWins()+1);
+        }
+
     }
 
 

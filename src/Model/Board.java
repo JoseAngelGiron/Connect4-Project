@@ -93,20 +93,35 @@ public class Board implements Serializable {
         return boardNotComplete;
     }
 
-    public Player pickAPlayer(boolean playerTurn, Game game){
+    /**
+     * Esta función se encarga de elegir un jugador teniendo en cuenta el turno actual de la partida
+     * @param game que es el objeto que tiene los datos relativos a la partida
+     * @return player, que es un objeto de la clase jugador contenido en game
+     */
+    public Player pickAPlayer(Game game){
         Player player = game.getPlayers()[1];
 
 
-        if(playerTurn){
+        if(game.isTurn()){
             player = game.getPlayers()[0];
         }
         return player;
     }
 
-    public boolean determineWinner(boolean playerTurn, Game game){
-        return !( reverseDiagonal(pickAPlayer(playerTurn, game)) || diagonal(pickAPlayer(playerTurn, game)) || horizontal(pickAPlayer(playerTurn, game)) || vertical(pickAPlayer(playerTurn, game)));
+    /**
+     * Esta función se encarga de determinar si hay 4 fichas conectadas entre sí,
+     * @param game que es el objeto que contiene los datos relativos a la partida
+     * @return true si hay 4 fichas conectadas entre sí, y false si no es así
+     */
+    public boolean determineWinner(Game game){
+        return !( reverseDiagonal(pickAPlayer(game)) || diagonal(pickAPlayer(game)) || horizontal(pickAPlayer(game)) || vertical(pickAPlayer(game)));
     }
 
+    /**
+     * Esta función se encarga de comprobar si hay 4 fichas consecutivas de forma vertical en el tablero
+     * @param player un jugador que es sobre su ficha en la que se comprobara si hay coincidencias
+     * @return true o false, en función de si hay coincidencias de 4 fichas verticales
+     */
     public boolean vertical(Player player){
 
         int acu=0;
@@ -128,6 +143,11 @@ public class Board implements Serializable {
         return !isWinner;
     }
 
+    /**
+     * Esta función se encarga de comprobar si hay 4 fichas consecutivas de forma horizontal en el tablero
+     * @param player un jugador que es sobre su ficha en la que se comprobara si hay coincidencias
+     * @return true o false, en función de si hay coincidencias de 4 fichas horizontales
+     */
     public boolean horizontal(Player player) {
         boolean isWinner = true;
         int acu;
@@ -151,6 +171,11 @@ public class Board implements Serializable {
 
         return !isWinner;
     }
+    /**
+     * Esta función se encarga de comprobar si hay 4 fichas consecutivas de forma diagonal en el tablero
+     * @param player un jugador que es sobre su ficha en la que se comprobara si hay coincidencias
+     * @return true o false, en función de si hay coincidencias de 4 fichas diagonales
+     */
     public boolean diagonal(Player player){
         boolean isWinner=true;
         int acu =0;
@@ -168,7 +193,11 @@ public class Board implements Serializable {
         }
         return !isWinner;
     }
-
+    /**
+     * Esta función se encarga de comprobar si hay 4 fichas consecutivas de forma diagonal inversa en el tablero
+     * @param player un jugador que es sobre su ficha en la que se comprobara si hay coincidencias
+     * @return true o false, en función de si hay coincidencias de 4 fichas en diagonal inversa
+     */
     public boolean reverseDiagonal(Player player){
         boolean isWinner=true;
         int acu =0;
